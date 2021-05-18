@@ -1,0 +1,18 @@
+<ion-content>
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide *ngFor="let plan of plans;">
+      <div>
+        <h1 class="plan-title">{{ plan.plan }}</h1>
+        <app-remain-time 
+          [datetime]='((plan.list.length > 0) ? plan.list[0].datetime : "{}")'
+          [eventid]='((plan.list.length > 0) ? plan.list[0].id : -1)'
+        ></app-remain-time>
+        <div class="event-group">
+          <div class="event-list" *ngFor="let data of plan.list | keyvalue">
+            <app-event [eventdata]="data" [totallist]="plan.list"></app-event>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
